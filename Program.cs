@@ -8,31 +8,43 @@ namespace TicTackToe
     {
         static void Main(string[] args)
         {
-            // Instasiate classes
-            Game game = new Game();
-            Art art = new Art();
-            string opponent = "";
+            Begin();
+        }
 
+
+        static void Begin()
+        {
+            Art art = new Art();
             // Show greeting, rules and so on...
             art.Greeting();
-            // Choose opponent
-            opponent = Console.ReadLine();
+                // Instasiate classes
+                Game game = new Game();
+                string opponent = "";
 
             bool playing = true;
             while (playing)
-            {                
+            {
+                // Choose opponent
+                opponent = Console.ReadLine();
+
                 if (opponent == "1" || opponent == "2")
                 {
-                game.Play(opponent);
+                    game.Play(opponent);
                 }
                 else
                 {
-                    Console.SetCursorPosition(0, Console.CursorTop - 1);
-                    ClearCurrentConsoleLine();
+                    //Console.SetCursorPosition(0, Console.CursorTop - 1);
+                    //ClearCurrentConsoleLine();
+
+
+                    art.Greeting();
                     Console.WriteLine("You have to choose either 1, 2 or 3!");
-                }   
+                }
             }
-        }
+         }
+
+
+
         public static void ClearCurrentConsoleLine()
         {
             int currentLineCursor = Console.CursorTop;

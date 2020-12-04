@@ -6,13 +6,13 @@ namespace TicTackToe.Class
 {
     class AIrandom
     {
-        bool occupied = true;
         public string[] Play(string[] gameArr)
         {
+            bool occupied = true;
             do
             {
                 Random rnd = new Random();
-                int inputInt = rnd.Next(1, 9);
+                int inputInt = rnd.Next(1, 10);
                                 
                 string currentMark = gameArr[inputInt - 1];
 

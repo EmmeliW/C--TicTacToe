@@ -15,7 +15,6 @@ namespace TicTackToe.Class
         string input;
         int inputInt;
         int status = 0;
-        bool moveNotValid = true;
 
         //********************************************************************************* THE GAME
         public void Play(string opponent)
@@ -61,7 +60,8 @@ namespace TicTackToe.Class
         }            
         //************************************************************************************************ Human input 
         public void Humaninput(int currentPlayer)
-        {                 
+        {
+            bool moveNotValid = true;
             // gör detta så länge det är ett ogiltigt numer
             do
             {
