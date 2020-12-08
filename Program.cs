@@ -17,16 +17,13 @@ namespace TicTackToe
 
             bool playing = true;
             while (playing)
-            {
-
-                
+            {                
                 // Choose opponent
                 opponent = Console.ReadLine();
 
                 if (opponent == "1" || opponent == "2")
                 {
-                    string[] gameArr = { "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-                    game.Play(opponent, gameArr);
+                    game.Play(opponent);
                 }
                 else
                 {

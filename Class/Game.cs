@@ -9,17 +9,21 @@ namespace TicTackToe.Class
         AIrandom randomOpponent = new AIrandom();
         Art art = new Art();
         // Skapa en array
-        string[] gameArr = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+        string[] gameArr;
+        //string[] gameArr = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         // Vrables
-        int currentPlayer = 2;
+        int currentPlayer;
         string input;
         int inputInt;
-        int status = 0;
+        int status;
 
         //********************************************************************************* THE GAME
         public void Play(string opponent)
         {
-        do 
+            currentPlayer = 2;
+            status = 0;
+            gameArr = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            do 
             {
                 Console.Clear();
                 //Get next player
@@ -155,6 +159,7 @@ namespace TicTackToe.Class
             }
             else
             {
+                Array.Clear(gameArr, 0, 9);
                 return;
             }
         }
