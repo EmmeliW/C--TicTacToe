@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TicTackToe.Class
 {
@@ -6,10 +7,9 @@ namespace TicTackToe.Class
     {
         // Instasiate classes
         AIrandom randomOpponent = new AIrandom();
-        Art art = new Art()
-;
+        Art art = new Art();
         // Skapa en array
-        string[] gameArr = { "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        string[] gameArr = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         // Vrables
         int currentPlayer = 2;
         string input;
@@ -19,7 +19,7 @@ namespace TicTackToe.Class
         //********************************************************************************* THE GAME
         public void Play(string opponent)
         {
-            do 
+        do 
             {
                 Console.Clear();
                 //Get next player
@@ -50,12 +50,10 @@ namespace TicTackToe.Class
             {
             Console.WriteLine(" Enter the number of the spot where you want to play your filthy move.");
                 Humaninput(currentPlayer);
-                return;
             }
             else if (opponent == "2")
             {
                 randomOpponent.Play(gameArr);
-                return;
             }
         }            
         //************************************************************************************************ Human input 
@@ -137,11 +135,10 @@ namespace TicTackToe.Class
             }
             else if (IsItATie(gameArr))
             {
-                
+
             }
             return false;
         }
-
         //***************************************************************************************************** IF THERE IS A WINNER
 
         public void Winner(int currentPlayer)
@@ -150,7 +147,7 @@ namespace TicTackToe.Class
             art.DrawBoard(currentPlayer, gameArr);
             art.YouWon(currentPlayer);
             Console.WriteLine("Press X if you want to exit and any other key to restart änd play again.");
-            
+
             if (Console.ReadLine() == "x")
             {
                 Console.Clear();
@@ -159,7 +156,7 @@ namespace TicTackToe.Class
             else
             {
                 return;
-            }            
+            }
         }
 
         //**************************************************************************************************** ChECK IF IT IS A TIE

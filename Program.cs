@@ -8,12 +8,6 @@ namespace TicTackToe
     {
         static void Main(string[] args)
         {
-            Begin();
-        }
-
-
-        static void Begin()
-        {
             Art art = new Art();
             // Show greeting, rules and so on...
             art.Greeting();
@@ -24,22 +18,24 @@ namespace TicTackToe
             bool playing = true;
             while (playing)
             {
+
+                
                 // Choose opponent
                 opponent = Console.ReadLine();
 
                 if (opponent == "1" || opponent == "2")
                 {
-                    game.Play(opponent);
+                    string[] gameArr = { "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+                    game.Play(opponent, gameArr);
                 }
                 else
                 {
-                    //Console.SetCursorPosition(0, Console.CursorTop - 1);
-                    //ClearCurrentConsoleLine();
-
+                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                    ClearCurrentConsoleLine();
 
                     art.Greeting();
-                    Console.WriteLine("You have to choose either 1, 2 or 3!");
-                }
+                    Console.WriteLine("You have to choose either 1 or 2!");
+                }            
             }
          }
 
