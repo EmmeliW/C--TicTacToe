@@ -7,22 +7,22 @@ namespace TicTackToe.Class
     {
         // Instasiate classes
         AIrandom randomOpponent = new AIrandom();
+        HumanPlayer humanPlayer = new HumanPlayer();
         Art art = new Art();
-        // Skapa en array
+        // Array
         string[] gameArr;
-        //string[] gameArr = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         // Vrables
         int currentPlayer;
-        string input;
-        int inputInt;
         int status;
 
-        //********************************************************************************* THE GAME
         public void Play(string opponent)
         {
+            // Asign valies to array and varalbles
             currentPlayer = 2;
             status = 0;
             gameArr = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+
+            // Let the game roll like this after each players round
             do 
             {
                 Console.Clear();
@@ -36,85 +36,45 @@ namespace TicTackToe.Class
                 CheckWin();
             } while (status.Equals(0));
 
+            // If status changes to 1 or 2 
             if (status.Equals(1)) 
             {
+                // Present winner
                 Winner(currentPlayer);
             }
             else if (status.Equals(2))
             {
+                // Send message its a tie
                 Tie();
             }
         }
 
-        //************************************************************************************************ ENGINE
+        // Thos method checks vitch player is active
         private void Engine(string[] gameArr, int currentPlayer, string opponent)
         {
             // check witch opponent i active
             if (currentPlayer == 1 || opponent == "1")
             {
-            Console.WriteLine(" Enter the number of the spot where you want to play your filthy move.");
-                Humaninput(currentPlayer);
+                Console.WriteLine(" Enter the number of the spot where you want to play your filthy move.");
+                // Go to method for human round
+                humanPlayer.Humaninput(currentPlayer, gameArr);
             }
             else if (opponent == "2")
             {
+                // Go to method for AI round
                 randomOpponent.Play(gameArr);
             }
-        }            
-        //************************************************************************************************ Human input 
-        public void Humaninput(int currentPlayer)
-        {
-            bool moveNotValid = true;
-            // gör detta så länge det är ett ogiltigt numer
-            do
-            {
-                input = Console.ReadLine();                
-                // input = Console.ReadLine();
-                bool isNumber = Int32.TryParse(input, out inputInt);
-                // Kolla om input är tomt eller om det är något annat tal än 1-9
-                if (isNumber && !string.IsNullOrEmpty(input) && (inputInt >= 1) && (inputInt <= 9))
-                {
-                    string currentMark = gameArr[inputInt - 1];
-
-                    // kolla om den platsen är uppdagen av ett X eller ett O i arrayen.
-                    if (currentMark.Equals("X") || currentMark.Equals("O"))
-                    {
-                        Console.WriteLine("Oh, a little mistake has been made by you beautiful.");
-                        Console.WriteLine("Looks like this place is already taken, choose an empty one...");
-                    }
-                    else
-                    {
-                        //sätt X om det är spelare 1 och O om det äst spelare 2
-                        if (currentPlayer == 1)
-                        {
-                            gameArr[inputInt - 1] = "X"; 
-                        }
-                        else
-                        {
-                            gameArr[inputInt - 1] = "O";
-                        }
-                        // sätt not valid move till falskt så att loopen slutar
-                        moveNotValid = false;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Oh my, no no no. You can't do that.");
-                    Console.WriteLine("That's an invalid input, please select a valid number...");
-                }
-            } while (moveNotValid);
-            
-        }
+        }                   
 
 
-        //************************************************************************************************ NENEXR PLAYER
+        // Get the next player
         public int NextPlayer(int currentPlayer)
         {
             int result = (currentPlayer == 1) ? 2 : 1;
             return result;
         }
 
-        //************************************************************************************************ CHECK WINNER
-        // Method to look for winning line
+        // Methods to look for winning line
         public bool FullLine(int index0, int index1, int index2, string piece)
         {
             return gameArr[index0] == piece && gameArr[index1] == piece && gameArr[index2] == piece;
@@ -123,6 +83,7 @@ namespace TicTackToe.Class
         {
             return FullLine(index0, index1, index2, gameArr[index0]);
         }
+        // Check all the difftent lines
         public bool CheckWin()
         {
             if (IsLineFull(0, 1, 2) ||
@@ -143,15 +104,17 @@ namespace TicTackToe.Class
             }
             return false;
         }
-        //***************************************************************************************************** IF THERE IS A WINNER
 
+        // When there is a winner
         public void Winner(int currentPlayer)
         {
             Console.Clear();
+            // Draw the winnin board and present the winner
             art.DrawBoard(currentPlayer, gameArr);
             art.YouWon(currentPlayer);
             Console.WriteLine("Press X if you want to exit and any other key to restart änd play again.");
 
+            // Check if player wants to play again or exit
             if (Console.ReadLine() == "x")
             {
                 Console.Clear();
@@ -159,12 +122,11 @@ namespace TicTackToe.Class
             }
             else
             {
-                Array.Clear(gameArr, 0, 9);
                 return;
             }
         }
 
-        //**************************************************************************************************** ChECK IF IT IS A TIE
+        // Check all the lines if all the lines are full with x and o, it is a tie
         public bool IsItATie(string[] gameArr)
         {
                 if (gameArr[0] != "1" &&
@@ -183,14 +145,16 @@ namespace TicTackToe.Class
             return false;            
         }
 
-        //***************************************************************************************************** IF IT IS A TIE
+        // When it is a tie
         public void Tie()
         {
             Console.Clear();
+            // Draw the board and tell its a tie
             art.DrawBoard(currentPlayer, gameArr);
             art.ItsATie();
             Console.WriteLine("Press X if you want to exit and any other key to restart and play again.");
 
+            // Check if player wants to play again or exit
             if (Console.ReadLine() == "x")
             {
                 Console.Clear();

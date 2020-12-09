@@ -6,6 +6,7 @@ namespace TicTackToe.Class
 {
     class Art
     {
+        // Ruels and choises
         public void Greeting()
         {
             Console.Clear();
@@ -34,16 +35,19 @@ namespace TicTackToe.Class
             Console.WriteLine(" 1.   IRL opponent, play with someone beside you");
             Console.WriteLine(" 2.   AI opponenet, this one vill play randomly");
             Console.WriteLine("");
+            Console.WriteLine(" x.   To exit");
+            Console.WriteLine("");
             Console.WriteLine(" Please write the number of the opponent of your choise.");
         }
 
+        // The game board
         public void DrawBoard(int currentPlayer, string[] gameArr)
         {
             // Board
             Console.WriteLine("");
-            Console.WriteLine(" ***********************************************************");
-            Console.WriteLine("              This is a game of Tic Tac Toe");
-            Console.WriteLine(" ***********************************************************");
+            Console.WriteLine(" *****************************************************************************");
+            Console.WriteLine("                       This is a game of Tic Tac Toe");
+            Console.WriteLine(" *****************************************************************************");
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine($"                 It is player {currentPlayer}'s turn.");
